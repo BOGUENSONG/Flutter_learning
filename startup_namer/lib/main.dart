@@ -22,8 +22,16 @@ class MyApp extends StatelessWidget {
 }
 
 class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _saved = Set<WordPair>();
+  final _suggestions = <Station>[
+    Station("daejeon", 1),
+    Station("pohang", 2),
+    Station("seoul", 3),
+    Station("Sejong", 4),
+    Station("daegu", 5),
+    Station("Busan", 6),
+    Station("Hi", 7)
+  ];
+  final _saved = Set<Station>();
   final _biggerFont = TextStyle(fontSize: 22.0, color: Colors.blue[400]);
 
   void _pushSaved() {
@@ -31,10 +39,10 @@ class RandomWordsState extends State<RandomWords> {
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           final tiles = _saved.map(
-            (WordPair pair) {
+            (Station pair) {
               return ListTile(
                 title: Text(
-                  pair.asPascalCase,
+                  pair.name,
                   style: _biggerFont,
                 ),
               );
@@ -55,11 +63,11 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-  Widget _buildRow(WordPair pair) {
+  Widget _buildRow(Station pair) {
     final alreadySaved = _saved.contains(pair);
     return ListTile(
       title: Text(
-        pair.asPascalCase,
+        pair.name,
         style: _biggerFont,
       ),
       trailing: Icon(
@@ -81,12 +89,13 @@ class RandomWordsState extends State<RandomWords> {
   Widget _buildSuggestions() {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
+        itemCount: _suggestions.length,
         itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
+          // if (i.isOdd) return Divider(); /*2*/
+          final index = i; /*3*/
+          // if (index >= _suggestions.length) {
+          //   _suggestions.add(Station("hi", 1)); /*4*/
+          // }
           return _buildRow(_suggestions[index]);
         });
   }
@@ -112,4 +121,10 @@ class RandomWordsState extends State<RandomWords> {
 class RandomWords extends StatefulWidget {
   @override
   RandomWordsState createState() => RandomWordsState();
+}
+
+class Station {
+  String name;
+  int number;
+  Station(this.name, this.number);
 }
