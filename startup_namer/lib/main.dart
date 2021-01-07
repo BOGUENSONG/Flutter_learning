@@ -89,10 +89,10 @@ class RandomWordsState extends State<RandomWords> {
   Widget _buildSuggestions() {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemCount: _suggestions.length,
+        itemCount: _suggestions.length * 2,
         itemBuilder: /*1*/ (context, i) {
-          // if (i.isOdd) return Divider(); /*2*/
-          final index = i; /*3*/
+          if (i.isEven) return Divider(); /*2*/
+          final index = i ~/ 2; /*3*/
           // if (index >= _suggestions.length) {
           //   _suggestions.add(Station("hi", 1)); /*4*/
           // }
@@ -111,7 +111,9 @@ class RandomWordsState extends State<RandomWords> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          print("hello world");
+        },
       ),
       body: _buildSuggestions(),
     );
