@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,13 +22,13 @@ class MyApp extends StatelessWidget {
 
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <Station>[
-    Station("daejeon", 1),
-    Station("pohang", 2),
-    Station("seoul", 3),
-    Station("Sejong", 4),
-    Station("daegu", 5),
-    Station("Busan", 6),
-    Station("Hi", 7)
+    Station("Chungnam", 1),
+    Station("Seoul", 2),
+    Station("Kaist", 3),
+    Station("Yonsei", 4),
+    Station("Korea", 5),
+    Station("Pohang", 6),
+    Station("Inha", 7)
   ];
   final _saved = Set<Station>();
   final _biggerFont = TextStyle(fontSize: 22.0, color: Colors.blue[400]);
@@ -104,16 +103,17 @@ class RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Random Name Generator'),
+        title: Text('Colleges'),
         actions: [
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: Image.asset("image/chungnam.png"),
         onPressed: () {
-          print("hello world");
+          _pushSaved();
         },
+        backgroundColor: Colors.white,
       ),
       body: _buildSuggestions(),
     );
