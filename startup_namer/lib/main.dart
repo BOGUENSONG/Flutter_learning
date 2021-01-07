@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,9 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'hoee', // recent app (in android) switcher (in ios)
+
       theme: ThemeData(
-        primaryColor: Colors.amber,
-        accentColor: Colors.purpleAccent,
+        primaryColor: Colors.red[200],
+        accentColor: Colors.purple[300],
+        scaffoldBackgroundColor: Colors.amber[50],
       ),
       home: RandomWords(),
     );
@@ -62,6 +65,10 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
+  Widget _images(Station station) {
+    return Image.asset("image/" + station.number.toString() + ".png");
+  }
+
   Widget _buildRow(Station pair) {
     final alreadySaved = _saved.contains(pair);
     return ListTile(
@@ -99,6 +106,19 @@ class RandomWordsState extends State<RandomWords> {
         });
   }
 
+  Widget _swiperTest() {
+    return Swiper(
+      itemBuilder: (BuildContext context, int i) {
+        return _images(_suggestions[i]);
+      },
+      itemCount: 3,
+      viewportFraction: 0.6,
+      scale: 0.4,
+      pagination: SwiperPagination(),
+      control: SwiperControl(),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -115,7 +135,7 @@ class RandomWordsState extends State<RandomWords> {
         },
         backgroundColor: Colors.white,
       ),
-      body: _buildSuggestions(),
+      body: _swiperTest(),
     );
   }
 }
