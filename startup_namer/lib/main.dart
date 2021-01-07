@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'dart:ui' as ui;
 
 void main() => runApp(MyApp());
 
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
 
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <Station>[
-    Station("Chungnam", 1),
-    Station("Seoul", 2),
-    Station("Kaist", 3),
+    Station("충남대학교", 1),
+    Station("카이스트", 2),
+    Station("서울대학교", 3),
     Station("Yonsei", 4),
     Station("Korea", 5),
     Station("Pohang", 6),
@@ -66,7 +67,19 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _images(Station station) {
-    return Image.asset("image/" + station.number.toString() + ".png");
+    return Column(children: <Widget>[
+      Expanded(
+          child: Image.asset("image/" + station.number.toString() + ".png")),
+      Expanded(
+          child: Text(station.name,
+              style: TextStyle(
+                  fontSize: 40,
+                  foreground: Paint()
+                    ..shader = ui.Gradient.linear(
+                        const Offset(0, 20),
+                        const Offset(150, 20),
+                        <Color>[Colors.red, Colors.blue])))),
+    ]);
   }
 
   Widget _buildRow(Station pair) {
