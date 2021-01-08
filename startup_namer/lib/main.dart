@@ -35,7 +35,28 @@ class RandomWordsState extends State<RandomWords> {
     Station("Inha", 7)
   ];
   final _saved = Set<Station>();
-  final _biggerFont = TextStyle(fontSize: 22.0, color: Colors.blue[400]);
+  final _biggerFont = TextStyle(fontSize: 22.0, color: Colors.black);
+
+  void _clickMark(int stationNum) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(_suggestions[stationNum - 1].name),
+            ),
+            body: Text(
+              "station Name : " +
+                  _suggestions[stationNum - 1].name +
+                  "\nstation Number : " +
+                  stationNum.toString(),
+              style: _biggerFont,
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -69,7 +90,12 @@ class RandomWordsState extends State<RandomWords> {
   Widget _images(Station station) {
     return Column(children: <Widget>[
       Expanded(
-          child: Image.asset("image/" + station.number.toString() + ".png")),
+          child: GestureDetector(
+        onTap: () {
+          _clickMark(station.number);
+        },
+        child: Image.asset("image/" + station.number.toString() + ".png"),
+      )),
       Expanded(
           child: Text(station.name,
               style: TextStyle(
