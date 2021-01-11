@@ -45,13 +45,49 @@ class RandomWordsState extends State<RandomWords> {
             appBar: AppBar(
               title: Text(_suggestions[stationNum - 1].name),
             ),
-            body: Text(
-              "station Name : " +
-                  _suggestions[stationNum - 1].name +
-                  "\nstation Number : " +
-                  stationNum.toString(),
-              style: _biggerFont,
-            ),
+            body: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Image.asset(
+                          "image/" + stationNum.toString() + ".png",
+                        )),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: Column(children: [
+                              Icon(Icons.school,
+                                  color: Colors.black, size: 40.0),
+                              Container(
+                                child: Text(_suggestions[stationNum - 1].name),
+                              ),
+                            ]),
+                          ),
+                          Expanded(
+                            child: Column(children: [
+                              Icon(Icons.eco, color: Colors.lime, size: 40.0),
+                              Container(
+                                child: Text("Echo"),
+                              ),
+                            ]),
+                          ),
+                          Expanded(
+                            child: Column(children: [
+                              Icon(Icons.hd, color: Colors.purple, size: 40.0),
+                              Container(
+                                child: Text("HD"),
+                              ),
+                            ]),
+                          ),
+                        ])
+                  ],
+                )),
           );
         },
       ),
