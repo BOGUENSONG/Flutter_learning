@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:startup_namer/function1.dart';
 import 'dart:ui' as ui;
 
 void main() => runApp(MyApp());
@@ -66,8 +67,16 @@ class RandomWordsState extends State<RandomWords> {
                             children: <Widget>[
                               Expanded(
                                 child: Column(children: [
-                                  Icon(Icons.school,
-                                      color: Colors.black, size: 40.0),
+                                  InkWell(
+                                    onTap: () {
+                                      return Navigator.of(context).push(
+                                        MaterialPageRoute<void>(
+                                            builder: (context) => TestIcon()),
+                                      );
+                                    },
+                                    child: Icon(Icons.school,
+                                        color: Colors.black, size: 40.0),
+                                  ),
                                   Container(
                                     child:
                                         Text(_suggestions[stationNum - 1].name),
