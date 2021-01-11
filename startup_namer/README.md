@@ -1,6 +1,8 @@
 # startup_namer
 
 A new Flutter project.
+This repository was made for just testing 
+Design, UI test, Library Test
 
 ## Getting Started
 
