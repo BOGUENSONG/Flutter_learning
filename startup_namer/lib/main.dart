@@ -55,6 +55,8 @@ class RandomWordsState extends State<RandomWords> {
                         padding: const EdgeInsets.all(20.0),
                         child: Image.asset(
                           "image/" + stationNum.toString() + ".png",
+                          width: 320,
+                          height: 240,
                         )),
                     Container(
                         color: Colors.white,
