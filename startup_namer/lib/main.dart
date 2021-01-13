@@ -69,7 +69,7 @@ class RandomWordsState extends State<RandomWords> {
                                 child: Column(children: [
                                   InkWell(
                                     onTap: () {
-                                      return Navigator.of(context).push(
+                                      Navigator.of(context).push(
                                         MaterialPageRoute<void>(
                                             builder: (context) => TestIcon()),
                                       );
@@ -160,43 +160,6 @@ class RandomWordsState extends State<RandomWords> {
     ]);
   }
 
-  Widget _buildRow(Station pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.name,
-        style: _biggerFont,
-      ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      },
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemCount: _suggestions.length * 2,
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isEven) return Divider(); /*2*/
-          final index = i ~/ 2; /*3*/
-          // if (index >= _suggestions.length) {
-          //   _suggestions.add(Station("hi", 1)); /*4*/
-          // }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
   Widget _swiperTest() {
     return Swiper(
       itemBuilder: (BuildContext context, int i) {
@@ -214,7 +177,7 @@ class RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Colleges'),
+        title: Text('colleges'),
         actions: [
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
         ],

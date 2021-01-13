@@ -1,4 +1,4 @@
-package com.example.startup_namer
+package com.coxlab.startup_namer
 
 import io.flutter.embedding.android.FlutterActivity
 
